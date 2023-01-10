@@ -1,0 +1,14 @@
+GET http://localhost:7071/api/Products/10 HTTP/1.1
+content-type: application/json
+x-ms-token-aad-access-token: your-access-token-if-any
+
+###
+
+GET http://localhost:7071/api/SalesOrderPriceUpdate/0500000000/10 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://20.120.208.19:54000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500000001')
+Accept: application/json
+Authorization: Basic FUNCTIONAPP:Appl1ance
