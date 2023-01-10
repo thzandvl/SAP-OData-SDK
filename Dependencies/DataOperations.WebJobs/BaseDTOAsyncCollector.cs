@@ -10,7 +10,10 @@ namespace DataOperations.Bindings
         }
         public async Task AddAsync(T saveableObject, CancellationToken cancellationToken = default(CancellationToken)) 
         {
-            if(saveableObject.eTag == null)
+            //[Bart] This methodis called when adding a new product
+            //[Bart] eTag might be empty
+            //if(saveableObject.eTag == null)
+            if ((saveableObject.eTag == null) | (saveableObject.eTag == ""))
             {
                 // If the ETag is null, then we're creating a new entity.
                 saveableObject = await _dispatcher.CreateAsync(saveableObject);

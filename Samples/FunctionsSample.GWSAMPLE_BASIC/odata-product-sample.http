@@ -1,14 +1,134 @@
-GET http://localhost:7071/api/Products/10 HTTP/1.1
-content-type: application/json
-x-ms-token-aad-access-token: your-access-token-if-any
+// HTTP Rest Client
+// for x-csrf-token & http : login/ticket_only_by_https = 0 in rz11
+
+//To test : func host start in new terminal
+@user = FUNCTIONAPP
+@password = Appl1ance
+
+### 
+# @name getMetaData
+GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/$metadata
+Authorization: Basic {{user}}:{{password}}
+
+### 
+# @name getTopProducts
+GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet?$top=5
+Authorization: Basic {{user}}:{{password}}
+
+### 
+# @name getTopProductsAsJson
+GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet?$top=5
+Authorization: Basic {{user}}:{{password}}
+Accept : application/json
+
+### 
+# @name getProductAsJson
+GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('HT-1000')
+Authorization: Basic {{user}}:{{password}}
+Accept : application/json
 
 ###
+# @name getSalesOrder
+GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/SalesOrderSet('0500000000')
+Authorization: Basic {{user}}:{{password}}
+Accept : application/json
 
+###
+# @name getSalesOrderBusinessPartner
+GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/SalesOrderSet('0500000000')/ToBusinessPartner
+Authorization: Basic {{user}}:{{password}}
+Accept : application/json
+
+
+###
+# @name getTopProductsUsingAPI
+GET http://localhost:7071/api/Products/2 HTTP/1.1
+//content-type: application/json
+//x-ms-token-aad-access-token: your-access-token-if-any
+
+
+###
+# @name updatePrice
 GET http://localhost:7071/api/SalesOrderPriceUpdate/0500000000/10 HTTP/1.1
 content-type: application/json
 
-###
 
+###
+# @name getProductById
+GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('HT-1000')
+Accept :  application/json
+
+###
+# @name getXCSRFToken
+HEAD http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet
+Authorization: Basic {{user}}:{{password}}
+X-CSRF-Token: fetch
+
+###
+# @name addProduct
+@x-csrf-token = {{getXCSRFToken.response.headers.x-csrf-token}}
+POST http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet HTTP/1.1
+content-type: application/json
+Accept :  application/json
+X-CSRF-Token: {{x-csrf-token}}
+
+{
+    "ProductID": "Test123",
+    "TypeCode": "PR",
+    "Category": "Notebooks",
+    "Name": "Notebook Basic 15",
+    "NameLanguage": "EN",
+    "Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+    "DescriptionLanguage": "EN",
+    "SupplierID": "0100000046",
+    "SupplierName": "SAP",
+    "TaxTarifCode": 1,
+    "MeasureUnit": "EA",
+    "WeightMeasure": "4.200",
+    "WeightUnit": "KG",
+    "CurrencyCode": "EUR",
+    "Price": "956.00",
+    "Width": "30.000",
+    "Depth": "18.000",
+    "Height": "3.000",
+    "DimUnit": "CM"
+}
+
+
+
+###
+# @name addProductUsingAPI
+POST http://localhost:7071/api/AddProduct/Test123 HTTP/1.1
+content-type: application/json
+Accept :  application/json
+
+{
+    "ProductID": "Test123",
+    "TypeCode": "PR",
+    "Category": "Notebooks",
+    "Name": "Notebook Basic 15",
+    "NameLanguage": "EN",
+    "Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+    "DescriptionLanguage": "EN",
+    "SupplierID": "0100000046",
+    "SupplierName": "SAP",
+    "TaxTarifCode": 1,
+    "MeasureUnit": "EA",
+    "WeightMeasure": "4.200",
+    "WeightUnit": "KG",
+    "CurrencyCode": "EUR",
+    "Price": "956.00",
+    "Width": "30.000",
+    "Depth": "18.000",
+    "Height": "3.000",
+    "DimUnit": "CM"
+}
+
+
+
+
+###
+# @name getPurchaseOrderById
 GET http://20.120.208.19:54000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500000001')
 Accept: application/json
-Authorization: Basic FUNCTIONAPP:Appl1ance
+Authorization: Basic {{user}}:{{password}}

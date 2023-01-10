@@ -107,7 +107,10 @@ namespace DataOperations.OData.Client
             _requestMessage.Headers.Add("Authorization", $"{await _authHandler.GetAuthStringAsync("ALL")}");
             _requestMessage.Headers.Add("Accept", "application/json");
 
-            if(etag != "")
+            //[Bart] I would also set the content type to application/json
+            //_requestMessage.Content.Headers.Add("Content-Type", "application/json"); --> throws an exception???
+
+            if (etag != "")
             {
                 _requestMessage.Headers.Add("If-Match", etag);
             }
@@ -262,6 +265,7 @@ namespace DataOperations.OData.Client
             string cookieString = "";
 
             var last = cookies.Last();
+            //Construct the cookie string
             foreach(var cookie in cookies)
             {
                 cookieString += cookie;
