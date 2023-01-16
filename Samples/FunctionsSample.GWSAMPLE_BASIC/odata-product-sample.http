@@ -2,8 +2,8 @@
 // for x-csrf-token & http : login/ticket_only_by_https = 0 in rz11
 
 //To test : func host start in new terminal
-@user = FUNCTIONAPP
-@password = Appl1ance
+@user = <username>
+@password = <password>
 
 ### 
 # @name getMetaData
