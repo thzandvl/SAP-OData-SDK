@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using DataOperations.Bindings.Generated;
 using GWSAMPLE_BASIC;
+using Microsoft.Identity.Client;
 
 namespace FunctionsDemo
 {
@@ -21,6 +22,7 @@ namespace FunctionsDemo
         )
         {
             salesOrderInput.GrossAmount = Price;
+            var lineItems = await salesOrderInput.ToLineItems.GetResultsAsync();
             var businessPartner = await salesOrderInput.ToBusinessPartner.GetAsync();
             var AddressCity = (await salesOrderInput.ToBusinessPartner.GetAsync()).Address.City;
             await salesOrderCollector.AddAsync(salesOrderInput);

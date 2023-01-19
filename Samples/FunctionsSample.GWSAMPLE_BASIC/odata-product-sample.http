@@ -2,8 +2,8 @@
 // for x-csrf-token & http : login/ticket_only_by_https = 0 in rz11
 
 //To test : func host start in new terminal
-@user = FUNCTIONAPP
-@password = Appl1ance
+@user = <username>
+@password = <password>
 
 @SAPTestSubscrKey = 93f3a9cb433746e2817ee375fc57b8b6
 
@@ -141,15 +141,24 @@ Authorization: Basic {{user}}:{{password}}
 GET https://sap-api-mgmt.azure-api.net/ContactSet
 Accept: application/json
 Authorization: Basic {{user}}:{{password}}
+<<<<<<< HEAD
 Ocp-Apim-Subscription-Key: {{SAPTestSubscrKey}}
 
 
 ###
-# @name GetProductUsingAPIMgmt
+# @name GetProductUsingSAPoData
 GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('Test128') HTTP/1.1
 Authorization: Basic {{user}}:{{password}}
 Ocp-Apim-Subscription-Key: {{SAPTestSubscrKey}}
 Accept :  application/json
+
+###
+# @name GetProductUsingAPIMgmt
+GET https://sap-api-mgmt.azure-api.net/ProductSet('Test128') HTTP/1.1
+Authorization: Basic {{user}}:{{password}}
+Ocp-Apim-Subscription-Key: {{SAPTestSubscrKey}}
+Accept :  application/json
+
 
 ###
 # @name addProductUsingAPIMgmt
@@ -160,7 +169,7 @@ content-type: application/json
 Accept :  application/json
 
 {
-    "ProductID": "Test128",
+    "ProductID": "Test129",
     "TypeCode": "PR",
     "Category": "Notebooks",
     "Name": "Notebook Basic 15",
@@ -180,3 +189,18 @@ Accept :  application/json
     "Height": "3.000",
     "DimUnit": "CM"
 }
+=======
+>>>>>>> 5eea9b293bfe79c3c453d2cd763f842850482200
+###
+# @name HeadProductSet
+HEAD https://sap-api-mgmt.azure-api.net/ProductSet HTTP/1.1
+Authorization: Basic {{user}}:{{password}}
+Ocp-Apim-Subscription-Key: {{SAPTestSubscrKey}}
+X-CSRF-Token: fetch
+
+
+###
+# @name HeadProductSetonSAP
+HEAD http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic HTTP/1.1
+Authorization: Basic {{user}}:{{password}}
+X-CSRF-Token: fetch
