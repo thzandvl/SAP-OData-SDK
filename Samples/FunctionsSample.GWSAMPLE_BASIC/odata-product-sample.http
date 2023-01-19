@@ -5,37 +5,39 @@
 @user = FUNCTIONAPP
 @password = Appl1ance
 
+@SAPTestSubscrKey = 93f3a9cb433746e2817ee375fc57b8b6
+
 ### 
 # @name getMetaData
-GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/$metadata
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/$metadata
 Authorization: Basic {{user}}:{{password}}
 
 ### 
 # @name getTopProducts
-GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet?$top=5
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet?$top=5
 Authorization: Basic {{user}}:{{password}}
 
 ### 
 # @name getTopProductsAsJson
-GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet?$top=5
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet?$top=5
 Authorization: Basic {{user}}:{{password}}
 Accept : application/json
 
 ### 
 # @name getProductAsJson
-GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('HT-1000')
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('HT-1000')
 Authorization: Basic {{user}}:{{password}}
 Accept : application/json
 
 ###
 # @name getSalesOrder
-GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/SalesOrderSet('0500000000')
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/SalesOrderSet('0500000000')
 Authorization: Basic {{user}}:{{password}}
 Accept : application/json
 
 ###
 # @name getSalesOrderBusinessPartner
-GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/SalesOrderSet('0500000000')/ToBusinessPartner
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/SalesOrderSet('0500000000')/ToBusinessPartner
 Authorization: Basic {{user}}:{{password}}
 Accept : application/json
 
@@ -55,25 +57,25 @@ content-type: application/json
 
 ###
 # @name getProductById
-GET http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('HT-1000')
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('Test126')
 Accept :  application/json
 
 ###
 # @name getXCSRFToken
-HEAD http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet
+HEAD http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet
 Authorization: Basic {{user}}:{{password}}
 X-CSRF-Token: fetch
 
 ###
 # @name addProduct
 @x-csrf-token = {{getXCSRFToken.response.headers.x-csrf-token}}
-POST http://20.120.208.19:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet HTTP/1.1
+POST http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet HTTP/1.1
 content-type: application/json
 Accept :  application/json
 X-CSRF-Token: {{x-csrf-token}}
 
 {
-    "ProductID": "Test123",
+    "ProductID": "Test124",
     "TypeCode": "PR",
     "Category": "Notebooks",
     "Name": "Notebook Basic 15",
@@ -98,12 +100,12 @@ X-CSRF-Token: {{x-csrf-token}}
 
 ###
 # @name addProductUsingAPI
-POST http://localhost:7071/api/AddProduct/Test123 HTTP/1.1
+POST http://localhost:7071/api/AddProduct/Test126 HTTP/1.1
 content-type: application/json
 Accept :  application/json
 
 {
-    "ProductID": "Test123",
+    "ProductID": "Test125",
     "TypeCode": "PR",
     "Category": "Notebooks",
     "Name": "Notebook Basic 15",
@@ -129,6 +131,52 @@ Accept :  application/json
 
 ###
 # @name getPurchaseOrderById
-GET http://20.120.208.19:54000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500000001')
+GET http://137.116.249.0:54000/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/A_PurchaseOrder('4500000001')
 Accept: application/json
 Authorization: Basic {{user}}:{{password}}
+
+
+### Using API Management
+# @name getContactsUsingAPIMgmt
+GET https://sap-api-mgmt.azure-api.net/ContactSet
+Accept: application/json
+Authorization: Basic {{user}}:{{password}}
+Ocp-Apim-Subscription-Key: {{SAPTestSubscrKey}}
+
+
+###
+# @name GetProductUsingAPIMgmt
+GET http://137.116.249.0:54000/sap/opu/odata/iwbep/gwsample_basic/ProductSet('Test128') HTTP/1.1
+Authorization: Basic {{user}}:{{password}}
+Ocp-Apim-Subscription-Key: {{SAPTestSubscrKey}}
+Accept :  application/json
+
+###
+# @name addProductUsingAPIMgmt
+POST https://sap-api-mgmt.azure-api.net/ProductSet HTTP/1.1
+Authorization: Basic {{user}}:{{password}}
+Ocp-Apim-Subscription-Key: {{SAPTestSubscrKey}}
+content-type: application/json
+Accept :  application/json
+
+{
+    "ProductID": "Test128",
+    "TypeCode": "PR",
+    "Category": "Notebooks",
+    "Name": "Notebook Basic 15",
+    "NameLanguage": "EN",
+    "Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+    "DescriptionLanguage": "EN",
+    "SupplierID": "0100000046",
+    "SupplierName": "SAP",
+    "TaxTarifCode": 1,
+    "MeasureUnit": "EA",
+    "WeightMeasure": "4.200",
+    "WeightUnit": "KG",
+    "CurrencyCode": "EUR",
+    "Price": "956.00",
+    "Width": "30.000",
+    "Depth": "18.000",
+    "Height": "3.000",
+    "DimUnit": "CM"
+}
