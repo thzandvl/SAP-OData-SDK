@@ -1,0 +1,6495 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Service for namespace GWSAMPLE_BASIC",
+    "description": "This service is located at [https://services.odata.org/service-root/](https://services.odata.org/service-root/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[BusinessPartner{bg:orange}],[BusinessPartner]++-[CT_Address],[BusinessPartner]-*>[SalesOrder{bg:orange}],[BusinessPartner]-*>[Contact{bg:orange}],[BusinessPartner]-*>[Product{bg:orange}],[Product{bg:orange}],[Product]->[BusinessPartner{bg:orange}],[Product]-*>[SalesOrderLineItem{bg:orange}],[SalesOrder{bg:orange}],[SalesOrder]->[BusinessPartner{bg:orange}],[SalesOrder]-*>[SalesOrderLineItem{bg:orange}],[SalesOrderLineItem{bg:orange}],[SalesOrderLineItem]->[SalesOrder{bg:orange}],[SalesOrderLineItem]->[Product{bg:orange}],[Contact{bg:orange}],[Contact]++-[CT_Address],[Contact]->[BusinessPartner{bg:orange}],[VH_Sex{bg:orange}],[VH_Country{bg:orange}],[VH_AddressType{bg:orange}],[VH_Category{bg:orange}],[VH_Currency{bg:orange}],[VH_UnitQuantity{bg:orange}],[VH_UnitWeight{bg:orange}],[VH_UnitLength{bg:orange}],[VH_ProductTypeCode{bg:orange}],[VH_BPRole{bg:orange}],[VH_Language{bg:orange}],[CT_Address],[CT_String],[BusinessPartnerSet{bg:dodgerblue}]++-*>[BusinessPartner],[ProductSet{bg:dodgerblue}]++-*>[Product],[SalesOrderSet{bg:dodgerblue}]++-*>[SalesOrder],[SalesOrderLineItemSet{bg:dodgerblue}]++-*>[SalesOrderLineItem],[ContactSet{bg:dodgerblue}]++-*>[Contact],[VH_SexSet{bg:dodgerblue}]++-*>[VH_Sex],[VH_CountrySet{bg:dodgerblue}]++-*>[VH_Country],[VH_AddressTypeSet{bg:dodgerblue}]++-*>[VH_AddressType],[VH_CategorySet{bg:dodgerblue}]++-*>[VH_Category],[VH_CurrencySet{bg:dodgerblue}]++-*>[VH_Currency],[VH_UnitQuantitySet{bg:dodgerblue}]++-*>[VH_UnitQuantity],[VH_UnitWeightSet{bg:dodgerblue}]++-*>[VH_UnitWeight],[VH_UnitLengthSet{bg:dodgerblue}]++-*>[VH_UnitLength],[VH_ProductTypeCodeSet{bg:dodgerblue}]++-*>[VH_ProductTypeCode],[VH_BPRoleSet{bg:dodgerblue}]++-*>[VH_BPRole],[VH_LanguageSet{bg:dodgerblue}]++-*>[VH_Language],[RegenerateAllData{bg:dodgerblue}]->[CT_String],[SalesOrder_Confirm{bg:dodgerblue}]->[SalesOrder],[SalesOrder_Cancel{bg:dodgerblue}]->[SalesOrder],[SalesOrder_InvoiceCreated{bg:dodgerblue}]->[SalesOrder],[SalesOrder_GoodsIssueCreated{bg:dodgerblue}]->[SalesOrder])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:orange}],[EntitySet/Singleton/Operation{bg:dodgerblue}])",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://services.odata.org/service-root"
+    }
+  ],
+  "paths": {
+    "/BusinessPartnerSet": {
+      "get": {
+        "tags": [
+          "BusinessPartnerSet"
+        ],
+        "summary": "Get entities from BusinessPartnerSet",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "Address desc",
+                  "BusinessPartnerID",
+                  "BusinessPartnerID desc",
+                  "CompanyName",
+                  "CompanyName desc",
+                  "EmailAddress",
+                  "EmailAddress desc",
+                  "PhoneNumber",
+                  "PhoneNumber desc",
+                  "FaxNumber",
+                  "FaxNumber desc",
+                  "LegalForm",
+                  "LegalForm desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "BusinessPartnerRole",
+                  "BusinessPartnerRole desc",
+                  "CreatedAt",
+                  "CreatedAt desc",
+                  "ChangedAt",
+                  "ChangedAt desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "BusinessPartnerID",
+                  "CompanyName",
+                  "WebAddress",
+                  "EmailAddress",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "LegalForm",
+                  "CurrencyCode",
+                  "BusinessPartnerRole",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of BusinessPartner",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "BusinessPartnerSet"
+        ],
+        "summary": "Add new entity to BusinessPartnerSet",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BusinessPartner",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/BusinessPartnerSet('{BusinessPartnerID}')": {
+      "get": {
+        "tags": [
+          "BusinessPartnerSet"
+        ],
+        "summary": "Get entity from BusinessPartnerSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "BusinessPartnerID",
+                  "CompanyName",
+                  "WebAddress",
+                  "EmailAddress",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "LegalForm",
+                  "CurrencyCode",
+                  "BusinessPartnerRole",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BusinessPartner",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "BusinessPartnerSet"
+        ],
+        "summary": "Update entity in BusinessPartnerSet",
+        "requestBody": {
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified BusinessPartner",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner-update"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "BusinessPartnerSet"
+        ],
+        "summary": "Delete entity from BusinessPartnerSet",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "BusinessPartnerID",
+          "in": "path",
+          "description": "Bus. Part. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/BusinessPartnerSet('{BusinessPartnerID}')/ToSalesOrders": {
+      "get": {
+        "tags": [
+          "BusinessPartnerSet",
+          "SalesOrderSet"
+        ],
+        "summary": "Get entities from related ToSalesOrders",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "SalesOrderID desc",
+                  "CustomerID",
+                  "CustomerID desc",
+                  "CustomerName",
+                  "CustomerName desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "GrossAmount",
+                  "GrossAmount desc",
+                  "NetAmount",
+                  "NetAmount desc",
+                  "TaxAmount",
+                  "TaxAmount desc",
+                  "LifecycleStatus",
+                  "LifecycleStatus desc",
+                  "BillingStatus",
+                  "BillingStatus desc",
+                  "DeliveryStatus",
+                  "DeliveryStatus desc",
+                  "CreatedAt",
+                  "CreatedAt desc",
+                  "ChangedAt",
+                  "ChangedAt desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "Note",
+                  "NoteLanguage",
+                  "CustomerID",
+                  "CustomerName",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "LifecycleStatus",
+                  "LifecycleStatusDescription",
+                  "BillingStatus",
+                  "BillingStatusDescription",
+                  "DeliveryStatus",
+                  "DeliveryStatusDescription",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of SalesOrder",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "BusinessPartnerSet",
+          "SalesOrderSet"
+        ],
+        "summary": "Add new entity to related ToSalesOrders",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "BusinessPartnerID",
+          "in": "path",
+          "description": "Bus. Part. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/BusinessPartnerSet('{BusinessPartnerID}')/ToContacts": {
+      "get": {
+        "tags": [
+          "BusinessPartnerSet",
+          "ContactSet"
+        ],
+        "summary": "Get entities from related ToContacts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "Address desc",
+                  "ContactGuid",
+                  "ContactGuid desc",
+                  "BusinessPartnerID",
+                  "BusinessPartnerID desc",
+                  "Title",
+                  "Title desc",
+                  "FirstName",
+                  "FirstName desc",
+                  "MiddleName",
+                  "MiddleName desc",
+                  "LastName",
+                  "LastName desc",
+                  "Nickname",
+                  "Nickname desc",
+                  "Initials",
+                  "Initials desc",
+                  "Sex",
+                  "Sex desc",
+                  "PhoneNumber",
+                  "PhoneNumber desc",
+                  "FaxNumber",
+                  "FaxNumber desc",
+                  "EmailAddress",
+                  "EmailAddress desc",
+                  "Language",
+                  "Language desc",
+                  "DateOfBirth",
+                  "DateOfBirth desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "ContactGuid",
+                  "BusinessPartnerID",
+                  "Title",
+                  "FirstName",
+                  "MiddleName",
+                  "LastName",
+                  "Nickname",
+                  "Initials",
+                  "Sex",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "EmailAddress",
+                  "Language",
+                  "DateOfBirth",
+                  "ToBusinessPartner"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToBusinessPartner"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of Contact",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "BusinessPartnerSet",
+          "ContactSet"
+        ],
+        "summary": "Add new entity to related ToContacts",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Contact",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "BusinessPartnerID",
+          "in": "path",
+          "description": "Bus. Part. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/BusinessPartnerSet('{BusinessPartnerID}')/ToProducts": {
+      "get": {
+        "tags": [
+          "BusinessPartnerSet",
+          "ProductSet"
+        ],
+        "summary": "Get entities from related ToProducts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ProductID",
+                  "ProductID desc",
+                  "TypeCode",
+                  "TypeCode desc",
+                  "Category",
+                  "Category desc",
+                  "SupplierID",
+                  "SupplierID desc",
+                  "SupplierName",
+                  "SupplierName desc",
+                  "TaxTarifCode",
+                  "TaxTarifCode desc",
+                  "MeasureUnit",
+                  "MeasureUnit desc",
+                  "WeightMeasure",
+                  "WeightMeasure desc",
+                  "WeightUnit",
+                  "WeightUnit desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "Price",
+                  "Price desc",
+                  "Width",
+                  "Width desc",
+                  "Depth",
+                  "Depth desc",
+                  "Height",
+                  "Height desc",
+                  "DimUnit",
+                  "DimUnit desc",
+                  "CreatedAt",
+                  "CreatedAt desc",
+                  "ChangedAt",
+                  "ChangedAt desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ProductID",
+                  "TypeCode",
+                  "Category",
+                  "Name",
+                  "NameLanguage",
+                  "Description",
+                  "DescriptionLanguage",
+                  "SupplierID",
+                  "SupplierName",
+                  "TaxTarifCode",
+                  "MeasureUnit",
+                  "WeightMeasure",
+                  "WeightUnit",
+                  "CurrencyCode",
+                  "Price",
+                  "Width",
+                  "Depth",
+                  "Height",
+                  "DimUnit",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of Product",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "BusinessPartnerSet",
+          "ProductSet"
+        ],
+        "summary": "Add new entity to related ToProducts",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Product",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "BusinessPartnerID",
+          "in": "path",
+          "description": "Bus. Part. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/ProductSet": {
+      "get": {
+        "tags": [
+          "ProductSet"
+        ],
+        "summary": "Get entities from ProductSet",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ProductID",
+                  "ProductID desc",
+                  "TypeCode",
+                  "TypeCode desc",
+                  "Category",
+                  "Category desc",
+                  "SupplierID",
+                  "SupplierID desc",
+                  "SupplierName",
+                  "SupplierName desc",
+                  "TaxTarifCode",
+                  "TaxTarifCode desc",
+                  "MeasureUnit",
+                  "MeasureUnit desc",
+                  "WeightMeasure",
+                  "WeightMeasure desc",
+                  "WeightUnit",
+                  "WeightUnit desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "Price",
+                  "Price desc",
+                  "Width",
+                  "Width desc",
+                  "Depth",
+                  "Depth desc",
+                  "Height",
+                  "Height desc",
+                  "DimUnit",
+                  "DimUnit desc",
+                  "CreatedAt",
+                  "CreatedAt desc",
+                  "ChangedAt",
+                  "ChangedAt desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ProductID",
+                  "TypeCode",
+                  "Category",
+                  "Name",
+                  "NameLanguage",
+                  "Description",
+                  "DescriptionLanguage",
+                  "SupplierID",
+                  "SupplierName",
+                  "TaxTarifCode",
+                  "MeasureUnit",
+                  "WeightMeasure",
+                  "WeightUnit",
+                  "CurrencyCode",
+                  "Price",
+                  "Width",
+                  "Depth",
+                  "Height",
+                  "DimUnit",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of Product",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductSet"
+        ],
+        "summary": "Add new entity to ProductSet",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Product",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/ProductSet('{ProductID}')": {
+      "get": {
+        "tags": [
+          "ProductSet"
+        ],
+        "summary": "Get entity from ProductSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ProductID",
+                  "TypeCode",
+                  "Category",
+                  "Name",
+                  "NameLanguage",
+                  "Description",
+                  "DescriptionLanguage",
+                  "SupplierID",
+                  "SupplierName",
+                  "TaxTarifCode",
+                  "MeasureUnit",
+                  "WeightMeasure",
+                  "WeightUnit",
+                  "CurrencyCode",
+                  "Price",
+                  "Width",
+                  "Depth",
+                  "Height",
+                  "DimUnit",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Product",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "ProductSet"
+        ],
+        "summary": "Update entity in ProductSet",
+        "requestBody": {
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified Product",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product-update"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductSet"
+        ],
+        "summary": "Delete entity from ProductSet",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "ProductID",
+          "in": "path",
+          "description": "Product ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/ProductSet('{ProductID}')/ToSupplier": {
+      "get": {
+        "tags": [
+          "ProductSet",
+          "BusinessPartnerSet"
+        ],
+        "summary": "Get related ToSupplier",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "BusinessPartnerID",
+                  "CompanyName",
+                  "WebAddress",
+                  "EmailAddress",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "LegalForm",
+                  "CurrencyCode",
+                  "BusinessPartnerRole",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BusinessPartner",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "ProductID",
+          "in": "path",
+          "description": "Product ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/ProductSet('{ProductID}')/ToSalesOrderLineItems": {
+      "get": {
+        "tags": [
+          "ProductSet",
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Get entities from related ToSalesOrderLineItems",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "SalesOrderID desc",
+                  "ItemPosition",
+                  "ItemPosition desc",
+                  "ProductID",
+                  "ProductID desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "GrossAmount",
+                  "GrossAmount desc",
+                  "NetAmount",
+                  "NetAmount desc",
+                  "TaxAmount",
+                  "TaxAmount desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "ItemPosition",
+                  "ProductID",
+                  "Note",
+                  "NoteLanguage",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "DeliveryDate",
+                  "Quantity",
+                  "QuantityUnit",
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of SalesOrderLineItem",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductSet",
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Add new entity to related ToSalesOrderLineItems",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrderLineItem",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "ProductID",
+          "in": "path",
+          "description": "Product ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/SalesOrderSet": {
+      "get": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Get entities from SalesOrderSet",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "SalesOrderID desc",
+                  "CustomerID",
+                  "CustomerID desc",
+                  "CustomerName",
+                  "CustomerName desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "GrossAmount",
+                  "GrossAmount desc",
+                  "NetAmount",
+                  "NetAmount desc",
+                  "TaxAmount",
+                  "TaxAmount desc",
+                  "LifecycleStatus",
+                  "LifecycleStatus desc",
+                  "BillingStatus",
+                  "BillingStatus desc",
+                  "DeliveryStatus",
+                  "DeliveryStatus desc",
+                  "CreatedAt",
+                  "CreatedAt desc",
+                  "ChangedAt",
+                  "ChangedAt desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "Note",
+                  "NoteLanguage",
+                  "CustomerID",
+                  "CustomerName",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "LifecycleStatus",
+                  "LifecycleStatusDescription",
+                  "BillingStatus",
+                  "BillingStatusDescription",
+                  "DeliveryStatus",
+                  "DeliveryStatusDescription",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of SalesOrder",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Add new entity to SalesOrderSet",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SalesOrderSet('{SalesOrderID}')": {
+      "get": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Get entity from SalesOrderSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "Note",
+                  "NoteLanguage",
+                  "CustomerID",
+                  "CustomerName",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "LifecycleStatus",
+                  "LifecycleStatusDescription",
+                  "BillingStatus",
+                  "BillingStatusDescription",
+                  "DeliveryStatus",
+                  "DeliveryStatusDescription",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Delete entity from SalesOrderSet",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "SalesOrderID",
+          "in": "path",
+          "description": "Sa. Ord. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/SalesOrderSet('{SalesOrderID}')/ToBusinessPartner": {
+      "get": {
+        "tags": [
+          "SalesOrderSet",
+          "BusinessPartnerSet"
+        ],
+        "summary": "Get related ToBusinessPartner",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "BusinessPartnerID",
+                  "CompanyName",
+                  "WebAddress",
+                  "EmailAddress",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "LegalForm",
+                  "CurrencyCode",
+                  "BusinessPartnerRole",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BusinessPartner",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "SalesOrderID",
+          "in": "path",
+          "description": "Sa. Ord. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/SalesOrderSet('{SalesOrderID}')/ToLineItems": {
+      "get": {
+        "tags": [
+          "SalesOrderSet",
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Get entities from related ToLineItems",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "SalesOrderID desc",
+                  "ItemPosition",
+                  "ItemPosition desc",
+                  "ProductID",
+                  "ProductID desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "GrossAmount",
+                  "GrossAmount desc",
+                  "NetAmount",
+                  "NetAmount desc",
+                  "TaxAmount",
+                  "TaxAmount desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "ItemPosition",
+                  "ProductID",
+                  "Note",
+                  "NoteLanguage",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "DeliveryDate",
+                  "Quantity",
+                  "QuantityUnit",
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of SalesOrderLineItem",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SalesOrderSet",
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Add new entity to related ToLineItems",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrderLineItem",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "SalesOrderID",
+          "in": "path",
+          "description": "Sa. Ord. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/SalesOrderLineItemSet": {
+      "get": {
+        "tags": [
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Get entities from SalesOrderLineItemSet",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "SalesOrderID desc",
+                  "ItemPosition",
+                  "ItemPosition desc",
+                  "ProductID",
+                  "ProductID desc",
+                  "CurrencyCode",
+                  "CurrencyCode desc",
+                  "GrossAmount",
+                  "GrossAmount desc",
+                  "NetAmount",
+                  "NetAmount desc",
+                  "TaxAmount",
+                  "TaxAmount desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "ItemPosition",
+                  "ProductID",
+                  "Note",
+                  "NoteLanguage",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "DeliveryDate",
+                  "Quantity",
+                  "QuantityUnit",
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of SalesOrderLineItem",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Add new entity to SalesOrderLineItemSet",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrderLineItem",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SalesOrderLineItemSet(SalesOrderID='{SalesOrderID}',ItemPosition='{ItemPosition}')": {
+      "get": {
+        "tags": [
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Get entity from SalesOrderLineItemSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "ItemPosition",
+                  "ProductID",
+                  "Note",
+                  "NoteLanguage",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "DeliveryDate",
+                  "Quantity",
+                  "QuantityUnit",
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToHeader",
+                  "ToProduct"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrderLineItem",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Update entity in SalesOrderLineItemSet",
+        "requestBody": {
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified SalesOrderLineItem",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem-update"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SalesOrderLineItemSet"
+        ],
+        "summary": "Delete entity from SalesOrderLineItemSet",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "SalesOrderID",
+          "in": "path",
+          "description": "Sa. Ord. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        },
+        {
+          "name": "ItemPosition",
+          "in": "path",
+          "description": "PO Item Pos",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/SalesOrderLineItemSet(SalesOrderID='{SalesOrderID}',ItemPosition='{ItemPosition}')/ToHeader": {
+      "get": {
+        "tags": [
+          "SalesOrderLineItemSet",
+          "SalesOrderSet"
+        ],
+        "summary": "Get related ToHeader",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "SalesOrderID",
+                  "Note",
+                  "NoteLanguage",
+                  "CustomerID",
+                  "CustomerName",
+                  "CurrencyCode",
+                  "GrossAmount",
+                  "NetAmount",
+                  "TaxAmount",
+                  "LifecycleStatus",
+                  "LifecycleStatusDescription",
+                  "BillingStatus",
+                  "BillingStatusDescription",
+                  "DeliveryStatus",
+                  "DeliveryStatusDescription",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToBusinessPartner",
+                  "ToLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "SalesOrderID",
+          "in": "path",
+          "description": "Sa. Ord. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        },
+        {
+          "name": "ItemPosition",
+          "in": "path",
+          "description": "PO Item Pos",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/SalesOrderLineItemSet(SalesOrderID='{SalesOrderID}',ItemPosition='{ItemPosition}')/ToProduct": {
+      "get": {
+        "tags": [
+          "SalesOrderLineItemSet",
+          "ProductSet"
+        ],
+        "summary": "Get related ToProduct",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ProductID",
+                  "TypeCode",
+                  "Category",
+                  "Name",
+                  "NameLanguage",
+                  "Description",
+                  "DescriptionLanguage",
+                  "SupplierID",
+                  "SupplierName",
+                  "TaxTarifCode",
+                  "MeasureUnit",
+                  "WeightMeasure",
+                  "WeightUnit",
+                  "CurrencyCode",
+                  "Price",
+                  "Width",
+                  "Depth",
+                  "Height",
+                  "DimUnit",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSupplier",
+                  "ToSalesOrderLineItems"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Product",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "SalesOrderID",
+          "in": "path",
+          "description": "Sa. Ord. ID",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        },
+        {
+          "name": "ItemPosition",
+          "in": "path",
+          "description": "PO Item Pos",
+          "required": true,
+          "schema": {
+            "maxLength": 10,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/ContactSet": {
+      "get": {
+        "tags": [
+          "ContactSet"
+        ],
+        "summary": "Get entities from ContactSet",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "Address desc",
+                  "ContactGuid",
+                  "ContactGuid desc",
+                  "BusinessPartnerID",
+                  "BusinessPartnerID desc",
+                  "Title",
+                  "Title desc",
+                  "FirstName",
+                  "FirstName desc",
+                  "MiddleName",
+                  "MiddleName desc",
+                  "LastName",
+                  "LastName desc",
+                  "Nickname",
+                  "Nickname desc",
+                  "Initials",
+                  "Initials desc",
+                  "Sex",
+                  "Sex desc",
+                  "PhoneNumber",
+                  "PhoneNumber desc",
+                  "FaxNumber",
+                  "FaxNumber desc",
+                  "EmailAddress",
+                  "EmailAddress desc",
+                  "Language",
+                  "Language desc",
+                  "DateOfBirth",
+                  "DateOfBirth desc"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "ContactGuid",
+                  "BusinessPartnerID",
+                  "Title",
+                  "FirstName",
+                  "MiddleName",
+                  "LastName",
+                  "Nickname",
+                  "Initials",
+                  "Sex",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "EmailAddress",
+                  "Language",
+                  "DateOfBirth",
+                  "ToBusinessPartner"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToBusinessPartner"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of Contact",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ContactSet"
+        ],
+        "summary": "Add new entity to ContactSet",
+        "requestBody": {
+          "description": "New entity",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact-create"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Contact",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/ContactSet(guid'{ContactGuid}')": {
+      "get": {
+        "tags": [
+          "ContactSet"
+        ],
+        "summary": "Get entity from ContactSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "ContactGuid",
+                  "BusinessPartnerID",
+                  "Title",
+                  "FirstName",
+                  "MiddleName",
+                  "LastName",
+                  "Nickname",
+                  "Initials",
+                  "Sex",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "EmailAddress",
+                  "Language",
+                  "DateOfBirth",
+                  "ToBusinessPartner"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToBusinessPartner"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Contact",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "ContactSet"
+        ],
+        "summary": "Update entity in ContactSet",
+        "requestBody": {
+          "description": "New property values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "title": "Modified Contact",
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact-update"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ContactSet"
+        ],
+        "summary": "Delete entity from ContactSet",
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "ContactGuid",
+          "in": "path",
+          "description": "Contact GUID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ]
+    },
+    "/ContactSet(guid'{ContactGuid}')/ToBusinessPartner": {
+      "get": {
+        "tags": [
+          "ContactSet",
+          "BusinessPartnerSet"
+        ],
+        "summary": "Get related ToBusinessPartner",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Address",
+                  "BusinessPartnerID",
+                  "CompanyName",
+                  "WebAddress",
+                  "EmailAddress",
+                  "PhoneNumber",
+                  "FaxNumber",
+                  "LegalForm",
+                  "CurrencyCode",
+                  "BusinessPartnerRole",
+                  "CreatedAt",
+                  "ChangedAt",
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=63)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "ToSalesOrders",
+                  "ToContacts",
+                  "ToProducts"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "BusinessPartner",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "ContactGuid",
+          "in": "path",
+          "description": "Contact GUID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ]
+    },
+    "/VH_SexSet": {
+      "get": {
+        "tags": [
+          "VH_SexSet"
+        ],
+        "summary": "Get entities from VH_SexSet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Sex",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_Sex",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Sex"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_SexSet('{Sex}')": {
+      "get": {
+        "tags": [
+          "VH_SexSet"
+        ],
+        "summary": "Get entity from VH_SexSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Sex",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_Sex",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Sex"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Sex",
+          "in": "path",
+          "description": "Sex",
+          "required": true,
+          "schema": {
+            "maxLength": 1,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_CountrySet": {
+      "get": {
+        "tags": [
+          "VH_CountrySet"
+        ],
+        "summary": "Get entities from VH_CountrySet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Land1",
+                  "Landx",
+                  "Natio"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_Country",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Country"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_CountrySet('{Land1}')": {
+      "get": {
+        "tags": [
+          "VH_CountrySet"
+        ],
+        "summary": "Get entity from VH_CountrySet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Land1",
+                  "Landx",
+                  "Natio"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_Country",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Country"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Land1",
+          "in": "path",
+          "description": "Country",
+          "required": true,
+          "schema": {
+            "maxLength": 3,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_AddressTypeSet": {
+      "get": {
+        "tags": [
+          "VH_AddressTypeSet"
+        ],
+        "summary": "Get entities from VH_AddressTypeSet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "AddressType",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_AddressType",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_AddressType"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_AddressTypeSet('{AddressType}')": {
+      "get": {
+        "tags": [
+          "VH_AddressTypeSet"
+        ],
+        "summary": "Get entity from VH_AddressTypeSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "AddressType",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_AddressType",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_AddressType"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "AddressType",
+          "in": "path",
+          "description": "Address Type",
+          "required": true,
+          "schema": {
+            "maxLength": 2,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_CategorySet": {
+      "get": {
+        "tags": [
+          "VH_CategorySet"
+        ],
+        "summary": "Get entities from VH_CategorySet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Category"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_Category",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Category"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_CategorySet('{Category}')": {
+      "get": {
+        "tags": [
+          "VH_CategorySet"
+        ],
+        "summary": "Get entity from VH_CategorySet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Category"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_Category",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Category"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Category",
+          "in": "path",
+          "description": "Prod. Cat.",
+          "required": true,
+          "schema": {
+            "maxLength": 40,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_CurrencySet": {
+      "get": {
+        "tags": [
+          "VH_CurrencySet"
+        ],
+        "summary": "Get entities from VH_CurrencySet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Waers",
+                  "Ltext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_Currency",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Currency"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_CurrencySet('{Waers}')": {
+      "get": {
+        "tags": [
+          "VH_CurrencySet"
+        ],
+        "summary": "Get entity from VH_CurrencySet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Waers",
+                  "Ltext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_Currency",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Currency"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Waers",
+          "in": "path",
+          "description": "Currency",
+          "required": true,
+          "schema": {
+            "maxLength": 5,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_UnitQuantitySet": {
+      "get": {
+        "tags": [
+          "VH_UnitQuantitySet"
+        ],
+        "summary": "Get entities from VH_UnitQuantitySet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Msehi",
+                  "Msehl"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_UnitQuantity",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_UnitQuantity"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_UnitQuantitySet('{Msehi}')": {
+      "get": {
+        "tags": [
+          "VH_UnitQuantitySet"
+        ],
+        "summary": "Get entity from VH_UnitQuantitySet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Msehi",
+                  "Msehl"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_UnitQuantity",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_UnitQuantity"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Msehi",
+          "in": "path",
+          "description": "Int. meas. unit",
+          "required": true,
+          "schema": {
+            "maxLength": 3,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_UnitWeightSet": {
+      "get": {
+        "tags": [
+          "VH_UnitWeightSet"
+        ],
+        "summary": "Get entities from VH_UnitWeightSet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Msehi",
+                  "Msehl"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_UnitWeight",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_UnitWeight"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_UnitWeightSet('{Msehi}')": {
+      "get": {
+        "tags": [
+          "VH_UnitWeightSet"
+        ],
+        "summary": "Get entity from VH_UnitWeightSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Msehi",
+                  "Msehl"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_UnitWeight",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_UnitWeight"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Msehi",
+          "in": "path",
+          "description": "Int. meas. unit",
+          "required": true,
+          "schema": {
+            "maxLength": 3,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_UnitLengthSet": {
+      "get": {
+        "tags": [
+          "VH_UnitLengthSet"
+        ],
+        "summary": "Get entities from VH_UnitLengthSet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Msehi",
+                  "Msehl"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_UnitLength",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_UnitLength"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_UnitLengthSet('{Msehi}')": {
+      "get": {
+        "tags": [
+          "VH_UnitLengthSet"
+        ],
+        "summary": "Get entity from VH_UnitLengthSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Msehi",
+                  "Msehl"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_UnitLength",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_UnitLength"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Msehi",
+          "in": "path",
+          "description": "Int. meas. unit",
+          "required": true,
+          "schema": {
+            "maxLength": 3,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_ProductTypeCodeSet": {
+      "get": {
+        "tags": [
+          "VH_ProductTypeCodeSet"
+        ],
+        "summary": "Get entities from VH_ProductTypeCodeSet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "TypeCode",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_ProductTypeCode",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_ProductTypeCode"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_ProductTypeCodeSet('{TypeCode}')": {
+      "get": {
+        "tags": [
+          "VH_ProductTypeCodeSet"
+        ],
+        "summary": "Get entity from VH_ProductTypeCodeSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "TypeCode",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_ProductTypeCode",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_ProductTypeCode"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "TypeCode",
+          "in": "path",
+          "description": "Prod. Type Code",
+          "required": true,
+          "schema": {
+            "maxLength": 2,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_BPRoleSet": {
+      "get": {
+        "tags": [
+          "VH_BPRoleSet"
+        ],
+        "summary": "Get entities from VH_BPRoleSet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "BpRole",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_BPRole",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_BPRole"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_BPRoleSet('{BpRole}')": {
+      "get": {
+        "tags": [
+          "VH_BPRoleSet"
+        ],
+        "summary": "Get entity from VH_BPRoleSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "BpRole",
+                  "Shorttext"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_BPRole",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_BPRole"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "BpRole",
+          "in": "path",
+          "description": "Bus. Part. Role",
+          "required": true,
+          "schema": {
+            "maxLength": 3,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/VH_LanguageSet": {
+      "get": {
+        "tags": [
+          "VH_LanguageSet"
+        ],
+        "summary": "Get entities from VH_LanguageSet",
+        "parameters": [
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=64)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Spras",
+                  "Sptxt"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Wrapper",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "title": "Collection of VH_Language",
+                      "type": "object",
+                      "properties": {
+                        "__count": {
+                          "$ref": "#/components/schemas/count"
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Language"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/VH_LanguageSet('{Spras}')": {
+      "get": {
+        "tags": [
+          "VH_LanguageSet"
+        ],
+        "summary": "Get entity from VH_LanguageSet by key",
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=68)",
+            "schema": {
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "enum": [
+                  "Spras",
+                  "Sptxt"
+                ],
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "VH_Language",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.VH_Language"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "Spras",
+          "in": "path",
+          "description": "Language",
+          "required": true,
+          "schema": {
+            "maxLength": 2,
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/RegenerateAllData": {
+      "post": {
+        "tags": [
+          "Service Operations"
+        ],
+        "summary": "Invoke action RegenerateAllData",
+        "parameters": [
+          {
+            "name": "NoOfSalesOrders",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "CT_String",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "type": "object",
+                      "properties": {
+                        "RegenerateAllData": {
+                          "$ref": "#/components/schemas/GWSAMPLE_BASIC.CT_String"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SalesOrder_Confirm": {
+      "post": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Invoke action SalesOrder_Confirm",
+        "parameters": [
+          {
+            "name": "SalesOrderID",
+            "in": "query",
+            "description": "Sa. Ord. ID  \n(Value needs to be enclosed in single quotes)",
+            "required": true,
+            "schema": {
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SalesOrder_Cancel": {
+      "post": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Invoke action SalesOrder_Cancel",
+        "parameters": [
+          {
+            "name": "SalesOrderID",
+            "in": "query",
+            "description": "Sa. Ord. ID  \n(Value needs to be enclosed in single quotes)",
+            "required": true,
+            "schema": {
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SalesOrder_InvoiceCreated": {
+      "post": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Invoke action SalesOrder_InvoiceCreated",
+        "parameters": [
+          {
+            "name": "SalesOrderID",
+            "in": "query",
+            "description": "Sa. Ord. ID  \n(Value needs to be enclosed in single quotes)",
+            "required": true,
+            "schema": {
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/SalesOrder_GoodsIssueCreated": {
+      "post": {
+        "tags": [
+          "SalesOrderSet"
+        ],
+        "summary": "Invoke action SalesOrder_GoodsIssueCreated",
+        "parameters": [
+          {
+            "name": "SalesOrderID",
+            "in": "query",
+            "description": "Sa. Ord. ID  \n(Value needs to be enclosed in single quotes)",
+            "required": true,
+            "schema": {
+              "maxLength": 12,
+              "pattern": "^'[^']*(''[^']*)*'$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "SalesOrder",
+                  "type": "object",
+                  "properties": {
+                    "d": {
+                      "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "tags": [
+          "Batch Requests"
+        ],
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=152).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "requestBody": {
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET BusinessPartnerSet HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GWSAMPLE_BASIC.BusinessPartner": {
+        "title": "BusinessPartner",
+        "type": "object",
+        "properties": {
+          "Address": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.CT_Address"
+          },
+          "BusinessPartnerID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "CompanyName": {
+            "title": "Company Name",
+            "maxLength": 80,
+            "type": "string"
+          },
+          "WebAddress": {
+            "title": "Web Address",
+            "type": "string",
+            "nullable": true
+          },
+          "EmailAddress": {
+            "title": "E-Mail Address",
+            "maxLength": 255,
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "title": "Phone No.",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "FaxNumber": {
+            "title": "Fax Number",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "LegalForm": {
+            "title": "Legal Form",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string"
+          },
+          "BusinessPartnerRole": {
+            "title": "Bus. Part. Role",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "CreatedAt": {
+            "title": "Time Stamp",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ChangedAt": {
+            "title": "Time Stamp",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ToSalesOrders": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+                }
+              }
+            }
+          },
+          "ToContacts": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact"
+                }
+              }
+            }
+          },
+          "ToProducts": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.BusinessPartner-create": {
+        "title": "BusinessPartner (for create)",
+        "type": "object",
+        "properties": {
+          "Address": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.CT_Address-create"
+          },
+          "CompanyName": {
+            "title": "Company Name",
+            "maxLength": 80,
+            "type": "string"
+          },
+          "WebAddress": {
+            "title": "Web Address",
+            "type": "string",
+            "nullable": true
+          },
+          "EmailAddress": {
+            "title": "E-Mail Address",
+            "maxLength": 255,
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "title": "Phone No.",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "FaxNumber": {
+            "title": "Fax Number",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "LegalForm": {
+            "title": "Legal Form",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string"
+          },
+          "BusinessPartnerRole": {
+            "title": "Bus. Part. Role",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "ToSalesOrders": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder-create"
+                }
+              }
+            }
+          },
+          "ToContacts": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.Contact-create"
+                }
+              }
+            }
+          },
+          "ToProducts": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product-create"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.BusinessPartner-update": {
+        "title": "BusinessPartner (for update)",
+        "type": "object",
+        "properties": {
+          "Address": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.CT_Address-update"
+          },
+          "CompanyName": {
+            "title": "Company Name",
+            "maxLength": 80,
+            "type": "string"
+          },
+          "WebAddress": {
+            "title": "Web Address",
+            "type": "string",
+            "nullable": true
+          },
+          "EmailAddress": {
+            "title": "E-Mail Address",
+            "maxLength": 255,
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "title": "Phone No.",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "FaxNumber": {
+            "title": "Fax Number",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "LegalForm": {
+            "title": "Legal Form",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string"
+          },
+          "BusinessPartnerRole": {
+            "title": "Bus. Part. Role",
+            "maxLength": 3,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.Product": {
+        "title": "Product",
+        "type": "object",
+        "properties": {
+          "ProductID": {
+            "title": "Product ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "TypeCode": {
+            "title": "Prod. Type Code",
+            "maxLength": 2,
+            "type": "string"
+          },
+          "Category": {
+            "title": "Prod. Cat.",
+            "maxLength": 40,
+            "type": "string"
+          },
+          "Name": {
+            "title": "Product Name",
+            "maxLength": 255,
+            "type": "string"
+          },
+          "NameLanguage": {
+            "title": "Language",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          },
+          "Description": {
+            "title": "Prod.Descrip.",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "DescriptionLanguage": {
+            "title": "Language",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          },
+          "SupplierID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "SupplierName": {
+            "title": "Company Name",
+            "maxLength": 80,
+            "type": "string",
+            "nullable": true
+          },
+          "TaxTarifCode": {
+            "title": "Prod. Tax Code",
+            "type": "integer",
+            "format": "uint8"
+          },
+          "MeasureUnit": {
+            "title": "Qty. Unit",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "WeightMeasure": {
+            "title": "Wt. Measure",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "WeightUnit": {
+            "title": "Qty. Unit",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string"
+          },
+          "Price": {
+            "title": "Unit Price",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Width": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Depth": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Height": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "DimUnit": {
+            "title": "Dim. Unit",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "title": "Time Stamp",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ChangedAt": {
+            "title": "Time Stamp",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ToSupplier": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+          },
+          "ToSalesOrderLineItems": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.Product-create": {
+        "title": "Product (for create)",
+        "required": [
+          "ProductID"
+        ],
+        "type": "object",
+        "properties": {
+          "ProductID": {
+            "title": "Product ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "TypeCode": {
+            "title": "Prod. Type Code",
+            "maxLength": 2,
+            "type": "string"
+          },
+          "Category": {
+            "title": "Prod. Cat.",
+            "maxLength": 40,
+            "type": "string"
+          },
+          "Name": {
+            "title": "Product Name",
+            "maxLength": 255,
+            "type": "string"
+          },
+          "Description": {
+            "title": "Prod.Descrip.",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "SupplierID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "TaxTarifCode": {
+            "title": "Prod. Tax Code",
+            "type": "integer",
+            "format": "uint8"
+          },
+          "MeasureUnit": {
+            "title": "Qty. Unit",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "WeightMeasure": {
+            "title": "Wt. Measure",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "WeightUnit": {
+            "title": "Qty. Unit",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string"
+          },
+          "Price": {
+            "title": "Unit Price",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Width": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Depth": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Height": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "DimUnit": {
+            "title": "Dim. Unit",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "ToSupplier": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner-create"
+          },
+          "ToSalesOrderLineItems": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem-create"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.Product-update": {
+        "title": "Product (for update)",
+        "type": "object",
+        "properties": {
+          "TypeCode": {
+            "title": "Prod. Type Code",
+            "maxLength": 2,
+            "type": "string"
+          },
+          "Category": {
+            "title": "Prod. Cat.",
+            "maxLength": 40,
+            "type": "string"
+          },
+          "Name": {
+            "title": "Product Name",
+            "maxLength": 255,
+            "type": "string"
+          },
+          "Description": {
+            "title": "Prod.Descrip.",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "SupplierID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "TaxTarifCode": {
+            "title": "Prod. Tax Code",
+            "type": "integer",
+            "format": "uint8"
+          },
+          "MeasureUnit": {
+            "title": "Qty. Unit",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "WeightMeasure": {
+            "title": "Wt. Measure",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "WeightUnit": {
+            "title": "Qty. Unit",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string"
+          },
+          "Price": {
+            "title": "Unit Price",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Width": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Depth": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "Height": {
+            "title": "Dimensions",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "DimUnit": {
+            "title": "Dim. Unit",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.SalesOrder": {
+        "title": "SalesOrder",
+        "type": "object",
+        "properties": {
+          "SalesOrderID": {
+            "title": "Sa. Ord. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "Note": {
+            "title": "Description",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "NoteLanguage": {
+            "title": "Language",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          },
+          "CustomerID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "CustomerName": {
+            "title": "Company Name",
+            "maxLength": 80,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string",
+            "nullable": true
+          },
+          "GrossAmount": {
+            "title": "Gross Amt.",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "NetAmount": {
+            "title": "Net Amt.",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "TaxAmount": {
+            "title": "Tax Amt.",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "LifecycleStatus": {
+            "title": "PO Lifecycle",
+            "maxLength": 1,
+            "type": "string",
+            "nullable": true
+          },
+          "LifecycleStatusDescription": {
+            "title": "Lifecycle Descript.",
+            "maxLength": 60,
+            "type": "string",
+            "nullable": true
+          },
+          "BillingStatus": {
+            "title": "PO Confirmation",
+            "maxLength": 1,
+            "type": "string",
+            "nullable": true
+          },
+          "BillingStatusDescription": {
+            "title": "Billing Description",
+            "maxLength": 60,
+            "type": "string",
+            "nullable": true
+          },
+          "DeliveryStatus": {
+            "title": "PO Ordering",
+            "maxLength": 1,
+            "type": "string",
+            "nullable": true
+          },
+          "DeliveryStatusDescription": {
+            "title": "Delivery Description",
+            "maxLength": 60,
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "title": "Time Stamp",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ChangedAt": {
+            "title": "Time Stamp",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ToBusinessPartner": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+          },
+          "ToLineItems": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.SalesOrder-create": {
+        "title": "SalesOrder (for create)",
+        "type": "object",
+        "properties": {
+          "Note": {
+            "title": "Description",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "CustomerID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string",
+            "nullable": true
+          },
+          "ToBusinessPartner": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner-create"
+          },
+          "ToLineItems": {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrderLineItem-create"
+                }
+              }
+            }
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.SalesOrder-update": {
+        "title": "SalesOrder (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.SalesOrderLineItem": {
+        "title": "SalesOrderLineItem",
+        "type": "object",
+        "properties": {
+          "SalesOrderID": {
+            "title": "Sa. Ord. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "ItemPosition": {
+            "title": "PO Item Pos",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "ProductID": {
+            "title": "Product ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "Note": {
+            "title": "Description",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "NoteLanguage": {
+            "title": "Language",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          },
+          "CurrencyCode": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string",
+            "nullable": true
+          },
+          "GrossAmount": {
+            "title": "Gross Amt.",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "NetAmount": {
+            "title": "Net Amt.",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "TaxAmount": {
+            "title": "Tax Amt.",
+            "multipleOf": 0.0010,
+            "type": "string",
+            "format": "decimal",
+            "nullable": true,
+            "example": "0"
+          },
+          "DeliveryDate": {
+            "title": "Time Stamp",
+            "type": "string",
+            "example": "/Date(1492098664000)/"
+          },
+          "Quantity": {
+            "title": "Quantity",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "example": "0"
+          },
+          "QuantityUnit": {
+            "title": "Qty. Unit",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "ToHeader": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder"
+          },
+          "ToProduct": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.SalesOrderLineItem-create": {
+        "title": "SalesOrderLineItem (for create)",
+        "required": [
+          "SalesOrderID"
+        ],
+        "type": "object",
+        "properties": {
+          "SalesOrderID": {
+            "title": "Sa. Ord. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "ProductID": {
+            "title": "Product ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "Note": {
+            "title": "Description",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "DeliveryDate": {
+            "title": "Time Stamp",
+            "type": "string",
+            "example": "/Date(1492098664000)/"
+          },
+          "Quantity": {
+            "title": "Quantity",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "example": "0"
+          },
+          "ToHeader": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.SalesOrder-create"
+          },
+          "ToProduct": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.Product-create"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.SalesOrderLineItem-update": {
+        "title": "SalesOrderLineItem (for update)",
+        "type": "object",
+        "properties": {
+          "ProductID": {
+            "title": "Product ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "Note": {
+            "title": "Description",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "DeliveryDate": {
+            "title": "Time Stamp",
+            "type": "string",
+            "example": "/Date(1492098664000)/"
+          },
+          "Quantity": {
+            "title": "Quantity",
+            "multipleOf": 0.0010,
+            "maximum": 9999999999.999,
+            "minimum": -9999999999.999,
+            "type": "string",
+            "format": "decimal",
+            "example": "0"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.Contact": {
+        "title": "Contact",
+        "type": "object",
+        "properties": {
+          "Address": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.CT_Address"
+          },
+          "ContactGuid": {
+            "title": "Contact GUID",
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "BusinessPartnerID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "Title": {
+            "title": "Title",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "FirstName": {
+            "title": "First Name",
+            "maxLength": 40,
+            "type": "string"
+          },
+          "MiddleName": {
+            "title": "Middle Name",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "LastName": {
+            "title": "Last Name",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "Nickname": {
+            "title": "Nickname",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "Initials": {
+            "title": "Initials",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Sex": {
+            "title": "Sex",
+            "maxLength": 1,
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "title": "Phone No.",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "FaxNumber": {
+            "title": "Fax Number",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "EmailAddress": {
+            "title": "E-Mail Address",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "Language": {
+            "title": "Language Key",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          },
+          "DateOfBirth": {
+            "title": "Date of Birth",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ToBusinessPartner": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.Contact-create": {
+        "title": "Contact (for create)",
+        "type": "object",
+        "properties": {
+          "Address": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.CT_Address-create"
+          },
+          "BusinessPartnerID": {
+            "title": "Bus. Part. ID",
+            "maxLength": 10,
+            "type": "string"
+          },
+          "Title": {
+            "title": "Title",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "FirstName": {
+            "title": "First Name",
+            "maxLength": 40,
+            "type": "string"
+          },
+          "MiddleName": {
+            "title": "Middle Name",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "LastName": {
+            "title": "Last Name",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "Nickname": {
+            "title": "Nickname",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "Initials": {
+            "title": "Initials",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Sex": {
+            "title": "Sex",
+            "maxLength": 1,
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "title": "Phone No.",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "FaxNumber": {
+            "title": "Fax Number",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "EmailAddress": {
+            "title": "E-Mail Address",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "Language": {
+            "title": "Language Key",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          },
+          "DateOfBirth": {
+            "title": "Date of Birth",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          },
+          "ToBusinessPartner": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.BusinessPartner-create"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.Contact-update": {
+        "title": "Contact (for update)",
+        "type": "object",
+        "properties": {
+          "Address": {
+            "$ref": "#/components/schemas/GWSAMPLE_BASIC.CT_Address-update"
+          },
+          "Title": {
+            "title": "Title",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "FirstName": {
+            "title": "First Name",
+            "maxLength": 40,
+            "type": "string"
+          },
+          "MiddleName": {
+            "title": "Middle Name",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "LastName": {
+            "title": "Last Name",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "Nickname": {
+            "title": "Nickname",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "Initials": {
+            "title": "Initials",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Sex": {
+            "title": "Sex",
+            "maxLength": 1,
+            "type": "string"
+          },
+          "PhoneNumber": {
+            "title": "Phone No.",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "FaxNumber": {
+            "title": "Fax Number",
+            "maxLength": 30,
+            "type": "string",
+            "nullable": true
+          },
+          "EmailAddress": {
+            "title": "E-Mail Address",
+            "maxLength": 255,
+            "type": "string",
+            "nullable": true
+          },
+          "Language": {
+            "title": "Language Key",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          },
+          "DateOfBirth": {
+            "title": "Date of Birth",
+            "type": "string",
+            "nullable": true,
+            "example": "/Date(1492098664000)/"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_Sex": {
+        "title": "VH_Sex",
+        "type": "object",
+        "properties": {
+          "Sex": {
+            "title": "Sex",
+            "maxLength": 1,
+            "type": "string"
+          },
+          "Shorttext": {
+            "title": "Short Descript.",
+            "maxLength": 60,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_Sex-create": {
+        "title": "VH_Sex (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Sex-update": {
+        "title": "VH_Sex (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Country": {
+        "title": "VH_Country",
+        "type": "object",
+        "properties": {
+          "Land1": {
+            "title": "Country",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "Landx": {
+            "title": "Name",
+            "maxLength": 15,
+            "type": "string"
+          },
+          "Natio": {
+            "title": "Nationality",
+            "maxLength": 15,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_Country-create": {
+        "title": "VH_Country (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Country-update": {
+        "title": "VH_Country (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_AddressType": {
+        "title": "VH_AddressType",
+        "type": "object",
+        "properties": {
+          "AddressType": {
+            "title": "Address Type",
+            "maxLength": 2,
+            "type": "string"
+          },
+          "Shorttext": {
+            "title": "Short Descript.",
+            "maxLength": 60,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_AddressType-create": {
+        "title": "VH_AddressType (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_AddressType-update": {
+        "title": "VH_AddressType (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Category": {
+        "title": "VH_Category",
+        "type": "object",
+        "properties": {
+          "Category": {
+            "title": "Prod. Cat.",
+            "maxLength": 40,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_Category-create": {
+        "title": "VH_Category (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Category-update": {
+        "title": "VH_Category (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Currency": {
+        "title": "VH_Currency",
+        "type": "object",
+        "properties": {
+          "Waers": {
+            "title": "Currency",
+            "maxLength": 5,
+            "type": "string"
+          },
+          "Ltext": {
+            "title": "Long Text",
+            "maxLength": 40,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_Currency-create": {
+        "title": "VH_Currency (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Currency-update": {
+        "title": "VH_Currency (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_UnitQuantity": {
+        "title": "VH_UnitQuantity",
+        "type": "object",
+        "properties": {
+          "Msehi": {
+            "title": "Int. meas. unit",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "Msehl": {
+            "title": "Unit text",
+            "maxLength": 30,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_UnitQuantity-create": {
+        "title": "VH_UnitQuantity (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_UnitQuantity-update": {
+        "title": "VH_UnitQuantity (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_UnitWeight": {
+        "title": "VH_UnitWeight",
+        "type": "object",
+        "properties": {
+          "Msehi": {
+            "title": "Int. meas. unit",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "Msehl": {
+            "title": "Unit text",
+            "maxLength": 30,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_UnitWeight-create": {
+        "title": "VH_UnitWeight (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_UnitWeight-update": {
+        "title": "VH_UnitWeight (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_UnitLength": {
+        "title": "VH_UnitLength",
+        "type": "object",
+        "properties": {
+          "Msehi": {
+            "title": "Int. meas. unit",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "Msehl": {
+            "title": "Unit text",
+            "maxLength": 30,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_UnitLength-create": {
+        "title": "VH_UnitLength (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_UnitLength-update": {
+        "title": "VH_UnitLength (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_ProductTypeCode": {
+        "title": "VH_ProductTypeCode",
+        "type": "object",
+        "properties": {
+          "TypeCode": {
+            "title": "Prod. Type Code",
+            "maxLength": 2,
+            "type": "string"
+          },
+          "Shorttext": {
+            "title": "Short Descript.",
+            "maxLength": 60,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_ProductTypeCode-create": {
+        "title": "VH_ProductTypeCode (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_ProductTypeCode-update": {
+        "title": "VH_ProductTypeCode (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_BPRole": {
+        "title": "VH_BPRole",
+        "type": "object",
+        "properties": {
+          "BpRole": {
+            "title": "Bus. Part. Role",
+            "maxLength": 3,
+            "type": "string"
+          },
+          "Shorttext": {
+            "title": "Short Descript.",
+            "maxLength": 60,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_BPRole-create": {
+        "title": "VH_BPRole (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_BPRole-update": {
+        "title": "VH_BPRole (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Language": {
+        "title": "VH_Language",
+        "type": "object",
+        "properties": {
+          "Spras": {
+            "title": "Language",
+            "maxLength": 2,
+            "type": "string"
+          },
+          "Sptxt": {
+            "title": "Name",
+            "maxLength": 16,
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.VH_Language-create": {
+        "title": "VH_Language (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.VH_Language-update": {
+        "title": "VH_Language (for update)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.CT_Address": {
+        "title": "CT_Address",
+        "type": "object",
+        "properties": {
+          "City": {
+            "title": "City",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "PostalCode": {
+            "title": "Postal Code",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Street": {
+            "title": "Street",
+            "maxLength": 60,
+            "type": "string",
+            "nullable": true
+          },
+          "Building": {
+            "title": "Building",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Country": {
+            "title": "Country",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "AddressType": {
+            "title": "Address Type",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.CT_Address-create": {
+        "title": "CT_Address (for create)",
+        "type": "object",
+        "properties": {
+          "City": {
+            "title": "City",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "PostalCode": {
+            "title": "Postal Code",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Street": {
+            "title": "Street",
+            "maxLength": 60,
+            "type": "string",
+            "nullable": true
+          },
+          "Building": {
+            "title": "Building",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Country": {
+            "title": "Country",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "AddressType": {
+            "title": "Address Type",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.CT_Address-update": {
+        "title": "CT_Address (for update)",
+        "type": "object",
+        "properties": {
+          "City": {
+            "title": "City",
+            "maxLength": 40,
+            "type": "string",
+            "nullable": true
+          },
+          "PostalCode": {
+            "title": "Postal Code",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Street": {
+            "title": "Street",
+            "maxLength": 60,
+            "type": "string",
+            "nullable": true
+          },
+          "Building": {
+            "title": "Building",
+            "maxLength": 10,
+            "type": "string",
+            "nullable": true
+          },
+          "Country": {
+            "title": "Country",
+            "maxLength": 3,
+            "type": "string",
+            "nullable": true
+          },
+          "AddressType": {
+            "title": "Address Type",
+            "maxLength": 2,
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.CT_String": {
+        "title": "CT_String",
+        "type": "object",
+        "properties": {
+          "String": {
+            "type": "string"
+          }
+        }
+      },
+      "GWSAMPLE_BASIC.CT_String-create": {
+        "title": "CT_String (for create)",
+        "type": "object"
+      },
+      "GWSAMPLE_BASIC.CT_String-update": {
+        "title": "CT_String (for update)",
+        "type": "object"
+      },
+      "count": {
+        "type": "string",
+        "description": "The number of entities in the collection. Available when using the [$inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67) query option."
+      },
+      "error": {
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "required": [
+              "code",
+              "message"
+            ],
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "required": [
+                  "lang",
+                  "value"
+                ],
+                "type": "object",
+                "properties": {
+                  "lang": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=66)",
+        "schema": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=65)",
+        "schema": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "count": {
+        "name": "$inlinecount",
+        "in": "query",
+        "description": "Include count of items, see [Inlinecount](https://help.sap.com/doc/5890d27be418427993fafa6722cdc03b/Cloud/en-US/OdataV2.pdf#page=67)",
+        "schema": {
+          "enum": [
+            "allpages",
+            "none"
+          ],
+          "type": "string"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "BusinessPartnerSet"
+    },
+    {
+      "name": "ProductSet"
+    },
+    {
+      "name": "SalesOrderSet"
+    },
+    {
+      "name": "SalesOrderLineItemSet"
+    },
+    {
+      "name": "ContactSet"
+    },
+    {
+      "name": "VH_SexSet"
+    },
+    {
+      "name": "VH_CountrySet"
+    },
+    {
+      "name": "VH_AddressTypeSet"
+    },
+    {
+      "name": "VH_CategorySet"
+    },
+    {
+      "name": "VH_CurrencySet"
+    },
+    {
+      "name": "VH_UnitQuantitySet"
+    },
+    {
+      "name": "VH_UnitWeightSet"
+    },
+    {
+      "name": "VH_UnitLengthSet"
+    },
+    {
+      "name": "VH_ProductTypeCodeSet"
+    },
+    {
+      "name": "VH_BPRoleSet"
+    },
+    {
+      "name": "VH_LanguageSet"
+    }
+  ]
+}
